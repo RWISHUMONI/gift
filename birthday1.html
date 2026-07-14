@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎂 Happy Birthday 🎂</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+
+    background:
+    linear-gradient(135deg,
+    #ff9ecf 25%,
+    #ffd6ed 25%,
+    #ffd6ed 50%,
+    #ff9ecf 50%,
+    #ff9ecf 75%,
+    #ffd6ed 75%);
+
+    background-size:80px 80px;
+
+}
+
+
+
+/* Birthday Card */
+
+.container{
+
+    width:90%;
+
+    max-width:450px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,0.85);
+
+    padding:35px;
+
+    border-radius:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+    backdrop-filter:blur(10px);
+
+    z-index:2;
+
+}
+
+
+
+#title{
+
+    color:#ff4081;
+
+    font-size:2.3rem;
+
+    animation:bounce 1.5s infinite;
+
+}
+
+
+.subtitle{
+
+    margin-top:15px;
+
+    color:#ff5c9a;
+
+    font-size:18px;
+
+}
+
+
+.tap{
+
+    margin-top:25px;
+
+    color:#ff4081;
+
+    font-size:20px;
+
+}
+
+
+
+/* Cake */
+
+.cake{
+
+    margin-top:20px;
+
+    font-size:120px;
+
+    cursor:pointer;
+
+    display:inline-block;
+
+    animation:cakeFloat 2s infinite;
+
+    transition:.5s;
+
+}
+
+
+.cake:hover{
+
+    transform:scale(1.15) rotate(-5deg);
+
+}
+
+
+
+/* Balloons */
+
+.emoji{
+
+    position:fixed;
+
+    bottom:-60px;
+
+    font-size:35px;
+
+    animation:float 8s linear infinite;
+
+    z-index:1;
+
+}
+
+
+
+.emoji:nth-child(1){
+
+left:5%;
+animation-delay:0s;
+
+}
+
+
+.emoji:nth-child(2){
+
+left:20%;
+animation-delay:1s;
+
+}
+
+
+.emoji:nth-child(3){
+
+left:35%;
+animation-delay:2s;
+
+}
+
+
+.emoji:nth-child(4){
+
+left:55%;
+animation-delay:3s;
+
+}
+
+
+.emoji:nth-child(5){
+
+left:70%;
+animation-delay:1.5s;
+
+}
+
+
+.emoji:nth-child(6){
+
+left:85%;
+animation-delay:2.5s;
+
+}
+
+
+
+
+@keyframes float{
+
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+
+20%{
+
+opacity:1;
+
+}
+
+
+100%{
+
+transform:translateY(-120vh);
+
+opacity:0;
+
+}
+
+}
+
+
+
+@keyframes cakeFloat{
+
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+
+
+@keyframes bounce{
+
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
+
+
+@media(max-width:600px){
+
+
+#title{
+
+font-size:2rem;
+
+}
+
+
+.cake{
+
+font-size:95px;
+
+}
+
+}
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="container">
+
+
+<h1 id="title">
+
+🎉 Happy Birthday To You 🎉
+
+</h1>
+
+
+
+<p class="subtitle">
+
+Wishing you a wonderful day filled with love and happiness ❤️
+
+</p>
+
+
+
+<p class="tap">
+
+✨ Tap the cake to cut it 🎂 ✨
+
+</p>
+
+
+
+<div id="cake" class="cake">
+
+🎂
+
+</div>
+
+
+
+</div>
+
+
+
+
+<!-- Floating Balloons -->
+
+<div class="emoji">🎈</div>
+<div class="emoji">🎈</div>
+<div class="emoji">🎉</div>
+<div class="emoji">💖</div>
+<div class="emoji">✨</div>
+<div class="emoji">🎁</div>
+
+
+
+
+<audio id="music">
+
+<source src="happy-birthday.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+
+
+<script>
+
+
+let cake = document.getElementById("cake");
+
+let music = document.getElementById("music");
+
+
+
+cake.onclick = function(){
+
+
+
+    // Cake cutting
+
+    cake.innerHTML="🍰";
+
+
+    cake.style.transform =
+    "scale(1.2) rotate(-10deg)";
+
+
+
+    // Music
+
+    if(music){
+
+        music.play().catch(()=>{});
+
+    }
+
+
+
+    // Confetti
+
+    confetti({
+
+        particleCount:200,
+
+        spread:120
+
+    });
+
+
+
+    setTimeout(()=>{
+
+
+        confetti({
+
+            particleCount:100,
+
+            spread:150
+
+        });
+
+
+    },500);
+
+
+
+
+    // Go to question page
+
+    setTimeout(()=>{
+
+
+        window.location.href="question.html";
+
+
+    },1500);
+
+
+
+};
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
